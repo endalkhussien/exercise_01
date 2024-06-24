@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const num1Element = document.getElementById('num1');
+            const num2Element = document.getElementById('num2');
+            const userAnswerInput = document.getElementById('userAnswer');
+            const resultElement = document.getElementById('result');
+            let correctAnswer;
+
+            function getRandomNumber() {
+                return Math.floor(Math.random() * 100) + 1;
+            }
+            function generateQuestion() {
+                const num1 = getRandomNumber();
+                const num2 = getRandomNumber();
+                correctAnswer = num1 + num2;
+                num1Element.textContent = num1;
+                num2Element.textContent = num2;
+                userAnswerInput.value = '';
+                resultElement.textContent = '';
+            }
+            function CheckAnswer() {
+                const userAnswer = parseInt(userAnswerInput.value, 10);
+                if (userAnswer === correctAnswer) {
+                    resultElement.textContent = 'Correct Answer !!'
+                }
+                else {
+                    resultElement.textContent = `incorrect. the correct answer is ${correctAnswer}`;
+                }
+            }
+            checkButton.addEventListener('click', CheckAnswer)
+            generateQuestion();
+        }
+        )
+    </script>
+</head>
+
+<body>
+    <h1>Random Number Addition Quiz</h1>
+    <div>
+        <span id="num1"></span> + <span id="num2"></span> =
+        <input type="number" id="userAnswer">
+        <button id="checkButton">Check Answer</button>
+    </div>
+    <p id="result"></p>
+    <button id="generateButton">New Question</button>
+</body>
+
+
+</html>
